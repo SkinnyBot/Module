@@ -6,7 +6,7 @@
 
 The Module plugin for Skinny.
 
-The Module plugin is a module that allow to manage modules with command. That means you can code your own module and load/reload it without restarting the bot. Isn't that cool ?! :stuck_out_tongue_closed_eyes:
+The Module plugin is a module that allow you to manage modules with commands. That means you can code your own module and load/reload it without restarting the bot. Isn't that cool ?! :stuck_out_tongue_closed_eyes:
 
 This module has the following command and it require to be admin of the bot :
 
