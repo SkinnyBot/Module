@@ -17,8 +17,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
-        "skinnybot/skinny": "~1.0"
+        "php": ">=7.3"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
