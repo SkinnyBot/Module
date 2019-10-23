@@ -62,19 +62,19 @@ class Module implements ModuleInterface
                 switch ($module) {
                     //AlreadyLoaded
                     case 'AL':
-                        $wrapper->Channel->sendMessage('The Module `' . $message['arguments'][1] .
+                        $wrapper->Channel->send('The Module `' . $message['arguments'][1] .
                             '` is already loaded.');
                         break;
 
                     //Loaded
                     case 'L':
-                        $wrapper->Channel->sendMessage('Module `' . $message['arguments'][1] .
+                        $wrapper->Channel->send('Module `' . $message['arguments'][1] .
                             '` loaded successfully.');
                         break;
 
                     //NotFound
                     case 'NF':
-                        $wrapper->Channel->sendMessage('The Module `' . $message['arguments'][1] . '` was not found.');
+                        $wrapper->Channel->send('The Module `' . $message['arguments'][1] . '` was not found.');
                         break;
                 }
                 break;
@@ -82,7 +82,7 @@ class Module implements ModuleInterface
             case 'unload':
                 //Prevent for loading a file in the memory for nothing.
                 if (Configure::read('debug') === false) {
-                    $wrapper->Channel->sendMessage('You can\'t unload a Module when the debug is `false`.');
+                    $wrapper->Channel->send('You can\'t unload a Module when the debug is `false`.');
                     break;
                 }
 
@@ -91,17 +91,17 @@ class Module implements ModuleInterface
 
                 //AlreadyUnloaded
                 if ($module === 'AU') {
-                    $wrapper->Channel->sendMessage('The Module `' . $message['arguments'][1] .
+                    $wrapper->Channel->send('The Module `' . $message['arguments'][1] .
                         '` is already unloaded or doesn\'t exist.');
                 } else {
-                    $wrapper->Channel->sendMessage('Module `' . $message['arguments'][1] . '` unloaded successfully.');
+                    $wrapper->Channel->send('Module `' . $message['arguments'][1] . '` unloaded successfully.');
                 }
                 break;
 
             case 'reload':
                 //Prevent for loading a file in the memory for nothing.
                 if (Configure::read('debug') === false) {
-                    $wrapper->Channel->sendMessage('You can\'t reload a Module when the debug is `false`.');
+                    $wrapper->Channel->send('You can\'t reload a Module when the debug is `false`.');
                     break;
                 }
 
@@ -131,7 +131,7 @@ class Module implements ModuleInterface
 
                 //If $time is false, that mean the Module is not loaded and/or doesn't exist.
                 if ($time === false) {
-                    $wrapper->Channel->sendMessage('This Module is not loaded.');
+                    $wrapper->Channel->send('This Module is not loaded.');
                     break;
                 }
 
@@ -140,7 +140,7 @@ class Module implements ModuleInterface
                 $start = new DateTime("@0");
                 $end = new DateTime("@$seconds");
 
-                $wrapper->Channel->sendMessage('The Module `' . Inflector::camelize($message['arguments'][1]) .
+                $wrapper->Channel->send('The Module `' . Inflector::camelize($message['arguments'][1]) .
                     '` is loaded since ' . $start->diff($end)->format('%a days, %h hours, %i minutes and %s seconds.'));
                 break;
 
@@ -149,11 +149,11 @@ class Module implements ModuleInterface
                 $modules = $wrapper->ModuleManager->getLoadedModules();
                 $modules = implode("`, `", $modules);
 
-                $wrapper->Channel->sendMessage('Modules loaded : `' . Inflector::camelize($modules) . '`.');
+                $wrapper->Channel->send('Modules loaded : `' . Inflector::camelize($modules) . '`.');
                 break;
 
             default:
-                $wrapper->Channel->sendMessage(Command::unknown($message));
+                $wrapper->Channel->send(Command::unknown($message));
         }
     }
 
@@ -174,22 +174,22 @@ class Module implements ModuleInterface
         switch ($moduleStatus) {
             //AlreadyUnloaded
             case 'AU':
-                $wrapper->Channel->sendMessage('The Module `' . $module . '` doesn\'t exist and cannot be reloaded.');
+                $wrapper->Channel->send('The Module `' . $module . '` doesn\'t exist and cannot be reloaded.');
                 break;
 
             //AlreadyLoaded
             case 'AL':
-                $wrapper->Channel->sendMessage('The Module `' . $module . '` is already loaded.');
+                $wrapper->Channel->send('The Module `' . $module . '` is already loaded.');
                 break;
 
             //Loaded
             case 'L':
-                $wrapper->Channel->sendMessage('Module `' . $module . '` reloaded successfully.');
+                $wrapper->Channel->send('Module `' . $module . '` reloaded successfully.');
                 break;
 
             //NotFound
             case 'NF':
-                $wrapper->Channel->sendMessage('Failed to reload the Module `' . $module . '`.');
+                $wrapper->Channel->send('Failed to reload the Module `' . $module . '`.');
                 break;
         }
     }
