@@ -18,30 +18,6 @@ class Module implements ModuleInterface
      *
      * @return void
      */
-    public function onChannelMessage(Wrapper $wrapper, $message)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param \Skinny\Network\Wrapper $wrapper The Wrapper instance.
-     * @param array $message The message array.
-     *
-     * @return void
-     */
-    public function onPrivateMessage(Wrapper $wrapper, $message)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param \Skinny\Network\Wrapper $wrapper The Wrapper instance.
-     * @param array $message The message array.
-     *
-     * @return void
-     */
     public function onCommandMessage(Wrapper $wrapper, $message)
     {
         if ($message['command'] !== 'module') {
